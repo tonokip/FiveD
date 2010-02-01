@@ -3,7 +3,9 @@
 
 #define USE_RELATIVE_ECODES
 
-#define MOTHERBOARD 2 // ARDUINO 0, SANGUINO 1, RS485 2, MEGA 3
+#define PS_INITIAL_STATE HIGH //HIGH = PSU Off at reset, LOW = PSU On at reset
+
+#define MOTHERBOARD 1 // ARDUINO 0, SANGUINO 1, RS485 2, MEGA 3
 
 #define E_STEPS_PER_MM   (2.12 * 16) // 1/16 Microstepping
 // (200 full-steps-per-revolution / (5mm diameter shaft * 3.14) / (3 mm filament / 0.5 mm nozzle) = (200 / (5 * 3.14)) / (3 / 0.5) = 2.12314225 full steps per mm extruded

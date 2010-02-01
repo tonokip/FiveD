@@ -139,9 +139,9 @@ void setup()
   Serial.begin(HOST_BAUD);
   Serial.println("start");
   
-#if MOTHERBOARD > 1
+#ifdef PS_ON_PIN
     pinMode(PS_ON_PIN, OUTPUT);  // add to run G3 as built by makerbot
-    digitalWrite(PS_ON_PIN, LOW);   // ditto
+    digitalWrite(PS_ON_PIN, PS_INITIAL_STATE);   // ditto
     delay(2000);    
     rs485Interface.begin(RS485_BAUD);  
 #endif

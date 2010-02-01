@@ -400,6 +400,17 @@ void process_string(char instruction[], int size)
 				 //todo: program end
 				 break;
 				 */
+			case 80:
+				#ifdef PS_ON_PIN
+				digitalWrite(PS_ON_PIN, LOW);
+				#endif
+				break;
+			case 81:
+				#ifdef PS_ON_PIN
+				digitalWrite(PS_ON_PIN, HIGH);
+				#endif
+				break;
+
 
 // Now, with E codes, there is no longer any idea of turning the extruder on or off.
 // (But see valve on/off below.)
