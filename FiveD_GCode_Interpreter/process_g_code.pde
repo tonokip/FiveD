@@ -253,7 +253,11 @@ void process_string(char instruction[], int size)
 			if (gc.seen & GCODE_Z)
 				fp.z = gc.Z;
 			if (gc.seen & GCODE_E)
+#ifdef USE_RELATIVE_ECODES
+				fp.e += gc.E;
+#else
 				fp.e = gc.E;
+#endif
 		}
 		else
 		{
