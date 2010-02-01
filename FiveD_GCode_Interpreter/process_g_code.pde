@@ -455,7 +455,9 @@ void process_string(char instruction[], int size)
 				break;
 
                         case 110:
+#if MOTHERBOARD == 2
                                 ex[extruder_in_use]->usePotForMotor();
+#endif
 				break;
 
 
