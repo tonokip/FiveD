@@ -76,6 +76,8 @@ void extruder::waitForTemperature()
       count = 0;
     }
     delay(1000);
+    Serial.print("T:");
+    Serial.println( getTemperature() );
   }
 }
 
