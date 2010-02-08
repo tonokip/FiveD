@@ -97,6 +97,7 @@ inline void specialMoveZ(const float& z, const float& feed)
 int last_gcode_g = -1;
 
 boolean abs_mode = true; //0 = incremental; 1 = absolute
+boolean abs_mode_e = true; //0 = incremental; 1 = absolute
 
 float extruder_speed = 0;
 
@@ -253,11 +254,11 @@ void process_string(char instruction[], int size)
 			if (gc.seen & GCODE_Z)
 				fp.z = gc.Z;
 			if (gc.seen & GCODE_E)
-#ifdef USE_RELATIVE_ECODES
-				fp.e += gc.E;
-#else
+			   if(abs_mode_e)
 				fp.e = gc.E;
-#endif
+			   else
+				fp.e += gc.E;
+
 		}
 		else
 		{
@@ -409,6 +410,12 @@ void process_string(char instruction[], int size)
 				#ifdef PS_ON_PIN
 				digitalWrite(PS_ON_PIN, HIGH);
 				#endif
+				break;
+			case 82:
+				abs_mode_e=true;
+				break;
+			case 83:
+				abs_mode_e=false;
 				break;
 
 
