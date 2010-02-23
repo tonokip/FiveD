@@ -500,6 +500,14 @@ void process_string(char instruction[], int size)
 				abs_mode_e=false;
 				break;
 
+			//Custome MCode to disable all steppers
+			case 84:
+				digitalWrite(X_ENABLE_PIN, !ENABLE_ON);
+				digitalWrite(Y_ENABLE_PIN, !ENABLE_ON);
+				digitalWrite(Z_ENABLE_PIN, !ENABLE_ON);
+				ex[extruder_in_use]->disableStep();     //This disables E if you use the extruder controller
+				break;
+
 
 // Now, with E codes, there is no longer any idea of turning the extruder on or off.
 // (But see valve on/off below.)
