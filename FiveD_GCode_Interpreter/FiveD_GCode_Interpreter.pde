@@ -1,3 +1,18 @@
+
+/**
+
+RepRap GCode interpreter.
+
+IMPORTANT
+
+Before changing this interpreter, read this page:
+
+http://objects.reprap.org/wiki/Mendel_User_Manual:_RepRapGCodes
+
+*/
+
+
+
 // Yep, this is actually -*- c++ -*-
 
 // Sanguino G-code Interpreter
@@ -75,7 +90,7 @@ volatile byte head;
 volatile byte tail;
 bool led;
 
-unsigned char interruptBlink;
+word interruptBlink;
 
 // Where the machine is from the point of view of the command stream
 
@@ -83,12 +98,13 @@ FloatPoint where_i_am;
 
 // Our interrupt function
 
-SIGNAL(SIG_OUTPUT_COMPARE1A)
+//SIGNAL(SIG_OUTPUT_COMPARE1A)
+ISR(TIMER1_COMPA_vect)
 {
   disableTimerInterrupt();
   
   interruptBlink++;
-  if(interruptBlink == 0x80)
+  if(interruptBlink == 0x280)
   {
      blink();
      interruptBlink = 0; 
@@ -112,6 +128,8 @@ void setup()
   debugstring[0] = 0;
   led = false;
   
+  setupGcodeProcessor();
+
   ex[0] = &ex0;
 #if EXTRUDER_COUNT == 2  
   ex[1] = &ex1;
@@ -181,6 +199,13 @@ void loop()
 
 // The move buffer
 
+inline void cancelAndClearQueue()
+{
+	tail = head;	// clear buffer
+	for(int i=0;i<BUFFER_SIZE;i++)
+		cdda[i]->kill();
+}
+
 inline bool qFull()
 {
   if(tail == 0)
@@ -193,6 +218,7 @@ inline bool qEmpty()
 {
    return tail == head && !cdda[tail]->active();
 }
+
 
 inline void qMove(const FloatPoint& p)
 {
