@@ -9,6 +9,8 @@
 
 #define EXTRUDER_COUNT 1
 
+#define USE_EXTRUDER_CONTROLLER false
+
 #define E_STEPS_PER_MM   (2.12 * 16) // 1/16 Microstepping
 // (200 full-steps-per-revolution / (5mm diameter shaft * 3.14) / (3 mm filament / 0.5 mm nozzle) = (200 / (5 * 3.14)) / (3 / 0.5) = 2.12314225 full steps per mm extruded
 
@@ -56,7 +58,7 @@
 #define BUFFER_SIZE 4 // *RO  // The size of the movement buffer
 #define DEFAULT_TICK (long)1000 // *RO  // Number of microseconds between timer interrupts when no movement is happening
 #define WAITING_DELAY 1 // *RO // What delay() value to use when waiting for things to free up in milliseconds
-#if MOTHERBOARD > 1
+#if USE_EXTRUDER_CONTROLLER == true
 #define MY_NAME 'H'           // Byte representing the name of this device
 #define E0_NAME '0'           // Byte representing the name of extruder 0
 #define E1_NAME '1'           // Byte representing the name of extruder 1

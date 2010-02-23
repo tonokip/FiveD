@@ -97,7 +97,7 @@ void extruder::temperatureError()
  * Otherwise, we have to do the work ourselves...
  */
 
-#if MOTHERBOARD < 2   
+#if USE_EXTRUDER_CONTROLLER == false   
 extruder::extruder(byte md_pin, byte ms_pin, byte h_pin, byte f_pin, byte t_pin, byte vd_pin, byte ve_pin, byte se_pin)
 {
   motor_dir_pin = md_pin;

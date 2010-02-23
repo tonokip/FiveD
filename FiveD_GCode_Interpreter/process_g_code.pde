@@ -554,7 +554,7 @@ void process_string(char instruction[], int size)
 
 			//set PWM to extruder stepper
 			case 108:
-#if MOTHERBOARD > 1
+#if USE_EXTRUDER_CONTROLLER == true
 				if (gc.seen & GCODE_S)
                                         ex[extruder_in_use]->setPWM((int)(255.0*gc.S + 0.5));
 #endif
@@ -587,7 +587,7 @@ void process_string(char instruction[], int size)
 				break;
 
                        case 113:
-                            #if MOTHERBOARD > 1
+                            #if USE_EXTRUDER_CONTROLLER == true
                                 ex[extruder_in_use]->usePotForMotor();
                             #endif
 				break;

@@ -18,7 +18,7 @@ void newExtruder(byte e);
 
 */
 
-#if MOTHERBOARD < 2
+#if USE_EXTRUDER_CONTROLLER == false
 
 #define EXTRUDER_FORWARD true
 #define EXTRUDER_REVERSE false

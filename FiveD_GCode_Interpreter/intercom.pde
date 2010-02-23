@@ -7,7 +7,7 @@
 
 #include "intercom.h"
 
-#if MOTHERBOARD > 1
+#if USE_EXTRUDER_CONTROLLER == true
 
 
 #if RS485_MASTER == 1

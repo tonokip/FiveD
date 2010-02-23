@@ -28,7 +28,7 @@
 #ifndef INTERCOM_H
 #define INTERCOM_H
 
-#if MOTHERBOARD > 1
+#if USE_EXTRUDER_CONTROLLER == true
 
 // Locations in a packet
 

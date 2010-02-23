@@ -48,7 +48,7 @@ byte extruder_in_use = 0;
 // along with the next G Code acknowledgement.
 char debugstring[100];
 
-#if MOTHERBOARD < 2
+#if USE_EXTRUDER_CONTROLLER == false
 
 // TODO: For some reason, if you declare the following two in the order ex0 ex1 then
 // ex0 won't drive its stepper.  They seem fine this way round though.  But that's got
@@ -175,7 +175,7 @@ void loop()
 {
    manageAllExtruders();
    get_and_do_command(); 
-#if MOTHERBOARD > 1
+#if USE_EXTRUDER_CONTROLLER == true
    talker.tick();
 #endif
 /*
