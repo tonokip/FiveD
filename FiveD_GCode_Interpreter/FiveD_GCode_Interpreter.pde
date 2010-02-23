@@ -161,6 +161,9 @@ void setup()
     pinMode(PS_ON_PIN, OUTPUT);  // add to run G3 as built by makerbot
     digitalWrite(PS_ON_PIN, PS_INITIAL_STATE);   // ditto
     delay(2000);    
+#endif
+
+#if USE_EXTRUDER_CONTROLLER == true
     rs485Interface.begin(RS485_BAUD);  
 #endif
 
