@@ -500,7 +500,7 @@ void process_string(char instruction[], int size)
 				abs_mode_e=false;
 				break;
 
-			//Custome MCode to disable all steppers
+			//Custom MCode to disable all steppers
 			case 84:
 				digitalWrite(X_ENABLE_PIN, !ENABLE_ON);
 				digitalWrite(Y_ENABLE_PIN, !ENABLE_ON);
