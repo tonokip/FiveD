@@ -5,12 +5,16 @@
 
 #define MOTHERBOARD 2 // ARDUINO 0, SANGUINO 1, RS485 2, MEGA 3
 
+#define USE_THERMISTOR
+
+#define EXTRUDER_COUNT 1
+
 #define E_STEPS_PER_MM   (2.12 * 16) // 1/16 Microstepping
 // (200 full-steps-per-revolution / (5mm diameter shaft * 3.14) / (3 mm filament / 0.5 mm nozzle) = (200 / (5 * 3.14)) / (3 / 0.5) = 2.12314225 full steps per mm extruded
 
 #define X_STEPS_PER_MM   10.047
-#define Y_STEPS_PER_MM   20.094 // 0.9deg/step
-#define Z_STEPS_PER_MM   1487.5 // 0.9def/step UNC 5/16 - 18 Threads Per Inch
+#define Y_STEPS_PER_MM   10.047 // 0.9deg/step
+#define Z_STEPS_PER_MM   1561.875 //1487.5 // 0.9deg/step UNC 5/16 - 18 Threads Per Inch
 
 
 #define FAST_XY_FEEDRATE 3000.0

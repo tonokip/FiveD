@@ -7,7 +7,7 @@
 #if MOTHERBOARD < 2
 
 // Uncomment the next line if you are using a thermistor; leave it if you have a thermocouple
-#define USE_THERMISTOR
+//#define USE_THERMISTOR
 
 // How many temperature samples to take for an average.  each sample takes about 100 usecs.
 #define TEMPERATURE_SAMPLES 3
