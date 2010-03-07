@@ -502,9 +502,15 @@ void process_string(char instruction[], int size)
 
 			//Custom MCode to disable all steppers
 			case 84:
+                                #ifdef X_ENABLE_PIN
 				digitalWrite(X_ENABLE_PIN, !ENABLE_ON);
+                                #endif
+                                #ifdef Y_ENABLE_PIN
 				digitalWrite(Y_ENABLE_PIN, !ENABLE_ON);
+                                #endif
+                                #ifdef Z_ENABLE_PIN
 				digitalWrite(Z_ENABLE_PIN, !ENABLE_ON);
+                                #endif
 				ex[extruder_in_use]->disableStep();     //This disables E if you use the extruder controller
 				break;
 
