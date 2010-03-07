@@ -592,13 +592,27 @@ void process_string(char instruction[], int size)
 				cancelAndClearQueue();
 				break;
 
+// If there's an S field, use that to set the PWM, otherwise use the pot.
                        case 113:
                             #if USE_EXTRUDER_CONTROLLER == true
-                                ex[extruder_in_use]->usePotForMotor();
+                                 if (gc.seen & GCODE_S)
+                                    ex[extruder_in_use]->setPWM((int)(255.0*gc.S + 0.5));
+                                 else
+                                    ex[extruder_in_use]->usePotForMotor();
                             #endif
 				break;
 
-
+			//custom code for returning current coordinates
+			case 114:
+				Serial.print("C: X");
+                                Serial.print(where_i_am.x);
+                                Serial.print(" Y");
+                                Serial.print(where_i_am.y);
+                                Serial.print(" Z");
+                                Serial.print(where_i_am.z);
+                                Serial.print(" E");
+                                Serial.println(where_i_am.e);
+				break;
 
 // The valve (real, or virtual...) is now the way to control any extruder (such as
 // a pressurised paste extruder) that cannot move using E codes.
