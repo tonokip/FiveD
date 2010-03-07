@@ -24,10 +24,6 @@ http://objects.reprap.org/wiki/Mendel_User_Manual:_RepRapGCodes
 // Sanguino v1.5 by Adrian Bowyer - implemented 4D Bressenham XYZ+ stepper control... (a.bowyer@bath.ac.uk)
 // Sanguino v1.6 by Adrian Bowyer - implemented RS485 extruders
 
-#ifndef __AVR_ATmega644P__
-#error Oops!  Make sure you have 'Sanguino' selected from the 'Tools -> Boards' menu.
-#endif
-
 #include <ctype.h>
 #include <HardwareSerial.h>
 #include <avr/pgmspace.h>
@@ -124,7 +120,9 @@ void setup()
   disableTimerInterrupt();
   setupTimerInterrupt();
   interruptBlink = 0;
+#ifdef DEBUG_PIN
   pinMode(DEBUG_PIN, OUTPUT);
+#endif
   debugstring[0] = 0;
   led = false;
   
@@ -260,11 +258,13 @@ inline void setPosition(const FloatPoint& p)
 
 void blink()
 {
+  #ifdef DEBUG_PIN
   led = !led;
   if(led)
       digitalWrite(DEBUG_PIN, 1);
   else
       digitalWrite(DEBUG_PIN, 0);
+  #endif
 } 
 
 

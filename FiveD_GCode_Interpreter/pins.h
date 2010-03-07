@@ -3,7 +3,10 @@
 
 #if MOTHERBOARD == 0
 
-#error The Arduino cannot run the 5D GCode interpreter
+#ifndef __AVR_ATmega328P__
+#error Oops!  Make sure you have 'Arduino Duemilanove w/ ATMega328' selected from the 'Tools -> Boards' menu.
+#endif
+//#error The Arduino cannot run the 5D GCode interpreter
 
 /****************************************************************************************
 * Arduino pin assignment - left here as they might be useful
@@ -42,6 +45,10 @@
 *
 ****************************************************************************************/
 #elif MOTHERBOARD == 1
+
+#ifndef __AVR_ATmega644P__
+#error Oops!  Make sure you have 'Sanguino' selected from the 'Tools -> Boards' menu.
+#endif
 
 #define DEBUG_PIN        0
 
@@ -90,6 +97,10 @@
 ****************************************************************************************/
 
 #elif MOTHERBOARD == 2
+
+#ifndef __AVR_ATmega644P__
+#error Oops!  Make sure you have 'Sanguino' selected from the 'Tools -> Boards' menu.
+#endif
 
 //x axis pins
 #define X_STEP_PIN      15
