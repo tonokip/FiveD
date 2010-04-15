@@ -550,6 +550,9 @@ void process_string(char instruction[], int size)
 
 			//turn fan on
 			case 106:
+				if (gc.seen & GCODE_S)
+					ex[extruder_in_use]->setCooler(gc.S);
+				else
 				ex[extruder_in_use]->setCooler(255);
 				break;
 
